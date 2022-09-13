@@ -8,7 +8,7 @@ SDLpp::SDLpp()
 	SDL_Init(0);
 }
 
-SDL_Event SDLpp::PollEvent(SDL_Event &event)
+SDL_Event SDLpp::PollEvent(SDL_Event& event)
 {
 	return event;
 }

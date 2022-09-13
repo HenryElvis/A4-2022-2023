@@ -109,7 +109,6 @@ void TypeValRef()
 
 void CreateSDLScreen()
 {
-    // SDL_Init(0);
     SDLpp sdl;
     
     SDLppWindow window(
@@ -120,30 +119,20 @@ void CreateSDLScreen()
     
     SDLppRenderer renderer(&window);
 
-    // SDL_Renderer* renderer = SDL_CreateRenderer(&window, 0, 0);
-
     bool isOpen = true;
 
     while (isOpen)
     {
         SDL_Event event;
 
-        while (SDLpp::PollEvent(&event) /*SDL_PollEvent(&event)*/)
+        while (SDLpp::PollEvent(&event))
         {
             if (event.type == SDL_QUIT)
                 isOpen = false;
         }
         
-        SDL_SetRenderDrawColor(&renderer, 127, 0, 0, 255);
-
-        SDL_RenderClear(&renderer);
-        SDL_RenderPresent(&renderer);
+        renderer.SetDrawColor(127, 0, 0, 255);
+        renderer.Clear();
+        renderer.Present();
     }
-
-    /*
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-
-    SDL_Quit();
-    */
 }

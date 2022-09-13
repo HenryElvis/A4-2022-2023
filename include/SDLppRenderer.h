@@ -5,12 +5,17 @@
 class SDLppRenderer
 {
 	public:
-		SDL_Window wind;
+		SDL_Window* wind;
+		SDL_Renderer* renderer;
 
-		SDLppRenderer(SDL_Window window)
+		SDLppRenderer::SDLppRenderer(SDL_Window* window)
 		{
 			wind = window;
 		}
 
-		~SDLppRenderer();
+		void SetDrawColor(int r, int g, int b, int a);
+		void Clear();
+		void Present();
+
+		SDLppRenderer::~SDLppRenderer();
 };
