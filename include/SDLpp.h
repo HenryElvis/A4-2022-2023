@@ -1,9 +1,10 @@
 #pragma once
+#include <SDL.h>
 
 class SDLpp
 {
 	public:
 		SDLpp();
-		void PollEvent(SDL_Event event);
+		SDL_Event PollEvent(SDL_Event& event);
 		~SDLpp();
 };

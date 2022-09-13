@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <SDLpp.h>
 #include <SDLppWindow.h>
+#include <SDLppRenderer.h>
 
 void CreateSDLScreen();
 void TypeValRef();
@@ -110,16 +111,16 @@ void CreateSDLScreen()
 {
     // SDL_Init(0);
     SDLpp sdl;
-
-    SDLppWindow window1;
-
-    SDL_Window* window = SDL_CreateWindow(
-        "A4Engine",
+    
+    SDLppWindow window(
+        "A4 Engine",
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
         1280, 720, 0);
+    
+    SDLppRenderer renderer(&window);
 
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, 0, 0);
+    // SDL_Renderer* renderer = SDL_CreateRenderer(&window, 0, 0);
 
     bool isOpen = true;
 
@@ -127,16 +128,16 @@ void CreateSDLScreen()
     {
         SDL_Event event;
 
-        while ( SDLpp::PollEvent(&event) /*SDL_PollEvent(&event)*/)
+        while (SDLpp::PollEvent(&event) /*SDL_PollEvent(&event)*/)
         {
             if (event.type == SDL_QUIT)
                 isOpen = false;
         }
+        
+        SDL_SetRenderDrawColor(&renderer, 127, 0, 0, 255);
 
-        SDL_SetRenderDrawColor(renderer, 127, 0, 0, 255);
-
-        SDL_RenderClear(renderer);
-        SDL_RenderPresent(renderer);
+        SDL_RenderClear(&renderer);
+        SDL_RenderPresent(&renderer);
     }
 
     /*
