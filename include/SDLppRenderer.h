@@ -1,21 +1,20 @@
 #pragma once
-#include <iostream>
 #include <SDL.h>
+
+class SDLppWindow;
 
 class SDLppRenderer
 {
 	public:
-		SDL_Window* wind;
-		SDL_Renderer* renderer;
 
-		SDLppRenderer::SDLppRenderer(SDL_Window* window)
-		{
-			wind = window;
-		}
+		SDLppRenderer::SDLppRenderer(SDLppWindow& window);
 
-		void SetDrawColor(int r, int g, int b, int a);
 		void Clear();
 		void Present();
+		void SetDrawColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
 
 		SDLppRenderer::~SDLppRenderer();
+
+	private :
+		SDL_Renderer* m_renderer;
 };

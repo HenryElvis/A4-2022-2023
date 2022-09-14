@@ -117,10 +117,10 @@ void CreateSDLScreen()
         SDL_WINDOWPOS_CENTERED,
         1280, 720, 0);
     
-    SDLppRenderer renderer(&window);
+    SDLppRenderer renderer(window);
 
     bool isOpen = true;
-
+    
     while (isOpen)
     {
         SDL_Event event;

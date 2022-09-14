@@ -1,15 +1,17 @@
 #include <iostream>
-#include <SDL.h>
 #include "SDLppWindow.h"
 
-SDLppWindow::SDLppWindow(const char* title, int x, int y, int z, int h, int w)
+SDLppWindow::SDLppWindow(const std::string& title, int x, int y, int width, int height, Uint32 flag)
 {
-	SDL_Window* window = SDL_CreateWindow(title, x, y, z, h, w);
+	m_window = SDL_CreateWindow(title.c_str(), x, y, width, height, flag);
+}
 
-	std::cout << "Constructor Window" << std::endl;
+SDL_Window* SDLppWindow::GetWindow()
+{
+	return m_window;
 }
 
 SDLppWindow::~SDLppWindow()
 {
-	std::cout << "Destructor Window" << std::endl;
+	SDL_DestroyWindow(m_window);
 }
