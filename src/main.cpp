@@ -119,7 +119,7 @@ void CreateSDLScreen()
     SDLppRenderer renderer(window);
 
     bool isOpen = true;
-
+    
     while (isOpen)
     {
         SDL_Event event;
