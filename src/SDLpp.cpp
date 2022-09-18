@@ -8,17 +8,12 @@ SDLpp::SDLpp()
 	SDL_Init(0);
 }
 
-SDL_Event SDLpp::PollEvent(SDL_Event &event)
+bool SDLpp::PollEvent(SDL_Event* event)
 {
-	return event;
+	return SDL_PollEvent(event);
 }
 
 SDLpp::~SDLpp()
 {
-	/*
-	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(window);
-	*/
-
 	SDL_Quit();
 }

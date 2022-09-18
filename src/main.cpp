@@ -3,6 +3,7 @@
 #include <SDLpp.h>
 #include <SDLppWindow.h>
 #include <SDLppRenderer.h>
+#include <SDLppTexture.h>
 
 void CreateSDLScreen();
 void TypeValRef();
@@ -109,18 +110,13 @@ void TypeValRef()
 
 void CreateSDLScreen()
 {
-    // SDL_Init(0);
     SDLpp sdl;
     
     SDLppWindow window(
         "A4 Engine",
-        SDL_WINDOWPOS_CENTERED,
-        SDL_WINDOWPOS_CENTERED,
         1280, 720, 0);
-    
-    SDLppRenderer renderer(&window);
-
-    // SDL_Renderer* renderer = SDL_CreateRenderer(&window, 0, 0);
+     
+    SDLppRenderer renderer(window);
 
     bool isOpen = true;
 
@@ -128,22 +124,26 @@ void CreateSDLScreen()
     {
         SDL_Event event;
 
-        while (SDLpp::PollEvent(&event) /*SDL_PollEvent(&event)*/)
+        while (SDLpp::PollEvent(&event))
         {
             if (event.type == SDL_QUIT)
                 isOpen = false;
         }
         
-        SDL_SetRenderDrawColor(&renderer, 127, 0, 0, 255);
+        renderer.SetDrawColor(127, 0, 0, 255);
+        renderer.Clear();
 
-        SDL_RenderClear(&renderer);
-        SDL_RenderPresent(&renderer);
+        SDL_Rect rect;
+
+        rect.x = 147;
+        rect.y = 257;
+        rect.w = 1422 / 4;
+        rect.h = 1347 / 4;
+
+        SDLppTexture img;
+
+        // SDL_RenderCopy(renderer.GetRenderer(), img, nullptr, &rect);
+
+        renderer.Present();
     }
-
-    /*
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-
-    SDL_Quit();
-    */
 }

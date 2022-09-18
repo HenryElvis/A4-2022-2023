@@ -5,6 +5,6 @@ class SDLpp
 {
 	public:
 		SDLpp();
-		SDL_Event PollEvent(SDL_Event& event);
+		static bool PollEvent(SDL_Event* event);
 		~SDLpp();
 };
