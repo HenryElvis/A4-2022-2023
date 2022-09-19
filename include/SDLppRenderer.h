@@ -12,6 +12,9 @@ class SDLppRenderer
 		void Clear();
 		void Present();
 		void SetDrawColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
+		SDL_Renderer* GetRenderer();
+
+		SDLppRenderer& operator = (const SDLppRenderer&) = delete;
 
 		SDLppRenderer::~SDLppRenderer();
 
