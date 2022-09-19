@@ -1,37 +1,34 @@
-<<<<<<< HEAD
 #include "SDLppWindow.h"
 
-SDLppWindow::SDLppWindow(const std::string& title, int width, int height, Uint32 flag) : 
-	SDLppWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, flag)
+SDLppWindow::SDLppWindow(const std::string& title, int width, int height, Uint32 flags) :
+SDLppWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, flags)
 {
-
 }
 
-SDLppWindow::SDLppWindow(const std::string& title, int x, int y, int width, int height, Uint32 flag)
+SDLppWindow::SDLppWindow(const std::string& title, int x, int y, int width, int height, Uint32 flags)
 {
-	m_window = SDL_CreateWindow(title.c_str(), x, y, width, height, flag);
+	m_window = SDL_CreateWindow(title.c_str(), x, y, width, height, flags);
 }
 
-=======
-#include <iostream>
-#include "SDLppWindow.h"
-
-SDLppWindow::SDLppWindow(const std::string& title, int x, int y, int width, int height, Uint32 flag)
+SDLppWindow::SDLppWindow(SDLppWindow&& window) noexcept
 {
-	m_window = SDL_CreateWindow(title.c_str(), x, y, width, height, flag);
-}
-
->>>>>>> 3f9c37a99fbaf1394ef2626a156423d08fef9634
-SDL_Window* SDLppWindow::GetWindow()
-{
-	return m_window;
+	m_window = window.m_window;
+	window.m_window = nullptr;
 }
 
 SDLppWindow::~SDLppWindow()
 {
-	SDL_DestroyWindow(m_window);
-<<<<<<< HEAD
+	if (m_window)
+		SDL_DestroyWindow(m_window);
 }
-=======
+
+SDL_Window* SDLppWindow::GetHandle() const
+{
+	return m_window;
 }
->>>>>>> 3f9c37a99fbaf1394ef2626a156423d08fef9634
+
+SDLppWindow& SDLppWindow::operator=(SDLppWindow&& window) noexcept
+{
+	std::swap(m_window, window.m_window);
+	return *this;
+}

@@ -1,37 +1,29 @@
 #pragma once
+
 #include <SDL.h>
 
+class SDLppTexture;
 class SDLppWindow;
 
 class SDLppRenderer
 {
 	public:
-<<<<<<< HEAD
 		SDLppRenderer(SDLppWindow& window);
-
-		SDLppRenderer(const SDLppRenderer&) = delete;
-		
-		void Clear();
-		void Present();
-		void SetDrawColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
-
+		SDLppRenderer(const SDLppRenderer&) = delete; // constructeur par copie
+		SDLppRenderer(SDLppRenderer&& renderer) noexcept; // constructeur par mouvement
 		~SDLppRenderer();
 
-		SDL_Renderer* GetRenderer();
-		SDLppRenderer& operator=(const SDLppRenderer&) = delete;
-
-	private:
-=======
-
-		SDLppRenderer::SDLppRenderer(SDLppWindow& window);
-
 		void Clear();
+		SDL_Renderer* GetHandle() const;
 		void Present();
+		void RenderCopy(const SDLppTexture& texture);
+		void RenderCopy(const SDLppTexture& texture, const SDL_Rect& dst);
+		void RenderCopy(const SDLppTexture& texture, const SDL_Rect& src, const SDL_Rect& dst);
 		void SetDrawColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
 
-		SDLppRenderer::~SDLppRenderer();
+		SDLppRenderer& operator=(const SDLppRenderer&) = delete; // opérateur d'assignation par copie
+		SDLppRenderer& operator=(SDLppRenderer&&) noexcept; // opérateur d'assignation par copie
 
-	private :
->>>>>>> 3f9c37a99fbaf1394ef2626a156423d08fef9634
+	private:
 		SDL_Renderer* m_renderer;
 };

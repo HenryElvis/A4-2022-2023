@@ -1,50 +1,22 @@
 #pragma once
-#include <iostream>
-<<<<<<< HEAD
-#include <SDL.h>
-#include <string>
-=======
+
 #include <string>
 #include <SDL.h>
->>>>>>> 3f9c37a99fbaf1394ef2626a156423d08fef9634
 
 class SDLppWindow
 {
 	public:
-		SDLppWindow(
-			const std::string& title,
-<<<<<<< HEAD
-			int width,
-			int height,
-			Uint32 flag = 0);
-
-		SDLppWindow(
-			const std::string& title,
-=======
->>>>>>> 3f9c37a99fbaf1394ef2626a156423d08fef9634
-			int x,
-			int y,
-			int width,
-			int height,
-<<<<<<< HEAD
-			Uint32 flag = 0
-		);
-
-		SDLppWindow(const SDLppWindow&) = delete;
-
+		SDLppWindow(const std::string& title, int width, int height, Uint32 flags = 0);
+		SDLppWindow(const std::string& title, int x, int y, int width, int height, Uint32 flags = 0);
+		SDLppWindow(const SDLppWindow&) = delete; // constructeur par copie
+		SDLppWindow(SDLppWindow&& window) noexcept; // constructeur par mouvement
 		~SDLppWindow();
 
-		SDL_Window* GetWindow();
+		SDL_Window* GetHandle() const;
 
-		SDLppWindow& operator=(const SDLppWindow&) = delete;
+		SDLppWindow& operator=(const SDLppWindow&) = delete; // opérateur d'affectation par copie
+		SDLppWindow& operator=(SDLppWindow&& window) noexcept; // opérateur d'affectation par mouvement
 
-=======
-			Uint32 flag);
-			
-		SDL_Window* GetWindow();
-		~SDLppWindow();
-
->>>>>>> 3f9c37a99fbaf1394ef2626a156423d08fef9634
 	private:
 		SDL_Window* m_window;
 };

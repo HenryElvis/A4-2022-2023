@@ -140,7 +140,7 @@ void CreateSDLScreen()
         rect.w = 1422 / 4;
         rect.h = 1347 / 4;
 
-        SDLppTexture img;
+        // SDLppTexture img;
 
         // SDL_RenderCopy(renderer.GetRenderer(), img, nullptr, &rect);
 

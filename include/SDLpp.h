@@ -1,15 +1,17 @@
 #pragma once
 
+#include <SDL.h>
+
 class SDLpp
 {
 	public:
-<<<<<<< HEAD
 		SDLpp();
-		static bool PollEvent(SDL_Event* event);
+		SDLpp(const SDLpp&) = delete;
+		SDLpp(SDLpp&&) = delete;
 		~SDLpp();
-=======
-		SDLpp::SDLpp();
+
+		SDLpp& operator=(const SDLpp&) = delete;
+		SDLpp& operator=(SDLpp&&) = delete;
+
 		static bool PollEvent(SDL_Event* event);
-		SDLpp::~SDLpp();
->>>>>>> 3f9c37a99fbaf1394ef2626a156423d08fef9634
 };
