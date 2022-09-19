@@ -3,6 +3,7 @@
 #include <SDLpp.h>
 #include <SDLppWindow.h>
 #include <SDLppRenderer.h>
+#include <SDLppTexture.h>
 
 void CreateSDLScreen();
 void TypeValRef();
@@ -11,42 +12,42 @@ class A
 {
     // Destruction dans l'ordre inverse de la construction
 
-    public:
-        A()
-        {
-            std::cout << "Constructeur A" << std::endl;
-        }
-        // A(const A&) = delete;
+public:
+    A()
+    {
+        std::cout << "Constructeur A" << std::endl;
+    }
+    // A(const A&) = delete;
 
-        A(const A&)
-        {
-            std::cout << "Constructeur A (copie)" << std::endl;
-        }
-        ~A()
-        {
-            std::cout << "Destructeur A" << std::endl;
-        }
+    A(const A&)
+    {
+        std::cout << "Constructeur A (copie)" << std::endl;
+    }
+    ~A()
+    {
+        std::cout << "Destructeur A" << std::endl;
+    }
 };
 
 class B
 {
     // Destruction dans l'ordre inverse de la construction
 
-    public:
-        B()
-        {
-            std::cout << "Constructeur B" << std::endl;
-        }
-        // A(const A&) = delete;
+public:
+    B()
+    {
+        std::cout << "Constructeur B" << std::endl;
+    }
+    // A(const A&) = delete;
 
-        B(const B&)
-        {
-            std::cout << "Constructeur B (copie)" << std::endl;
-        }
-        ~B()
-        {
-            std::cout << "Destructeur B" << std::endl;
-        }
+    B(const B&)
+    {
+        std::cout << "Constructeur B (copie)" << std::endl;
+    }
+    ~B()
+    {
+        std::cout << "Destructeur B" << std::endl;
+    }
 };
 
 void Foo(A a)
@@ -61,9 +62,9 @@ int main(int argc, char** argv)
 
     // A a;
     // B b;
-    
+
     // Foo(a);
-    
+
     return 0;
 }
 
@@ -110,17 +111,15 @@ void TypeValRef()
 void CreateSDLScreen()
 {
     SDLpp sdl;
-    
+
     SDLppWindow window(
         "A4 Engine",
-        SDL_WINDOWPOS_CENTERED,
-        SDL_WINDOWPOS_CENTERED,
         1280, 720, 0);
-    
+
     SDLppRenderer renderer(window);
 
     bool isOpen = true;
-    
+
     while (isOpen)
     {
         SDL_Event event;
@@ -130,9 +129,21 @@ void CreateSDLScreen()
             if (event.type == SDL_QUIT)
                 isOpen = false;
         }
-        
+
         renderer.SetDrawColor(127, 0, 0, 255);
         renderer.Clear();
+
+        SDL_Rect rect;
+
+        rect.x = 147;
+        rect.y = 257;
+        rect.w = 1422 / 4;
+        rect.h = 1347 / 4;
+
+        SDLppTexture img;
+
+        // SDL_RenderCopy(renderer.GetRenderer(), img, nullptr, &rect);
+
         renderer.Present();
     }
 }

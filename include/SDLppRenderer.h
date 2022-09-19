@@ -5,19 +5,17 @@ class SDLppWindow;
 
 class SDLppRenderer
 {
-	public:
+public:
+	SDLppRenderer::SDLppRenderer(SDLppWindow& window);
 
-		SDLppRenderer::SDLppRenderer(SDLppWindow& window);
+	void Clear();
+	void Present();
+	void SetDrawColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
 
-		void Clear();
-		void Present();
-		void SetDrawColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
-		SDL_Renderer* GetRenderer();
+	SDLppRenderer::~SDLppRenderer();
 
-		SDLppRenderer& operator = (const SDLppRenderer&) = delete;
+	SDL_Renderer* GetRenderer();
 
-		SDLppRenderer::~SDLppRenderer();
-
-	private :
-		SDL_Renderer* m_renderer;
+private:
+	SDL_Renderer* m_renderer;
 };

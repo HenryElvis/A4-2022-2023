@@ -1,21 +1,25 @@
 #pragma once
+
+#include <SDL.h>
 #include <string>
-#include <SDL_image.h>
 
 class SDLppRenderer;
 
 class SDLppTexture
 {
-	public:
-		SDLppTexture(const SDLppTexture&) = delete;
-		~SDLppTexture();
+public:
+	SDLppTexture(SDLppTexture&& texture);
+	SDLppTexture(const SDLppTexture&) = delete;
+	~SDLppTexture();
 
-		SDLppTexture& operator=(const SDLppTexture&) = delete;
+	SDL_Texture* GetTexture();
 
-		static SDLppTexture LoadFromFile(const std::string& filepath);
+	SDLppTexture& operator=(const SDLppTexture&) = delete;
 
-	private:
-		SDLppTexture(SDL_Texture* texture);
+	static SDLppTexture LoadFromFile(SDLppRenderer& renderer, const std::string& filepath);
 
-		SDL_Texture* m_texture;
+private:
+	SDLppTexture(SDL_Texture* texture);
+
+	SDL_Texture* m_texture;
 };
